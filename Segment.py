@@ -29,13 +29,13 @@ class Segment:
     def __add__(self, other):
         assert type(other) is Segment
 
-        if other.__segment[0] not in self:
+        if other.__segment[0] not in self and self.__segment[0] not in other:
             return None
 
         max_val = max(*other.__segment, *self.__segment)
         min_val = min(*other.__segment, *self.__segment)
 
-        return Segment(max_val, min_val)
+        return min_val, max_val
 
     def __contains__(self, item):
         assert type(item) is int or type(item) is float
